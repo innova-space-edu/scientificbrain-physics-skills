@@ -1,134 +1,97 @@
 # ScientificBrain Physics Skills
 
-Agent skills for computational physics, initially focused on plasma physics, FLASH 4.8, scientific data analysis, and NVIDIA PhysicsNeMo.
+Agent skills for computational physics, centered on plasma physics and a multi-fidelity stack spanning fluid, hybrid, kinetic/PIC, Monte Carlo transport, diagnostics, uncertainty quantification, and scientific machine learning.
 
 **Developed in collaboration with Innova Space Edu SpA — 2026.** Agent-assisted design, implementation, review, and documentation used OpenAI models.
 
-This repository follows the public NVIDIA Agent Skills pattern: each skill has a `SKILL.md` routing/instruction file and a `skill-card.md` governance card, with shared `references/`, `scripts/`, and evaluation cases. The repository deliberately does **not** redistribute FLASH source code. A local FLASH installation is supplied separately through `FLASH_ROOT`.
+The repository follows the public NVIDIA Agent Skills pattern: each skill contains a SKILL.md instruction/routing file plus a skill-card.md. External solvers are referenced, not redistributed.
 
-## Scope of v0.1.0
+## v0.2.0 — 39 skills
 
-The initial toolkit contains 15 skills:
+The toolkit now routes across:
 
-| Skill | Purpose |
-|---|---|
-| `plasma-regime` | Decide which physical description should be examined before simulation. |
-| `plasma-dimensionless` | Calculate plasma/MHD dimensionless and scale-separation quantities. |
-| `flash-discover` | Inspect a live FLASH tree instead of guessing units, tests, or runtime parameters. |
-| `flash-setup` | Build reproducible FLASH setup commands and preflight dependencies. |
-| `flash-run` | Launch, monitor, restart, and preserve provenance for a FLASH run. |
-| `flash-sweep` | Generate controlled parameter sweeps without losing run provenance. |
-| `flash-hdf5-yt` | Inspect FLASH HDF5 outputs and load/convert them with yt. |
-| `flash-shock-analysis` | Extract shock position, speed, thickness, jumps, and field profiles. |
-| `flash-extmhd` | Configure and audit resistive/Hall/Biermann/Nernst/Seebeck/cross-field physics. |
-| `flash-validation` | Validate numerical convergence, div(B), conservation, and benchmark behavior. |
-| `physicsnemo-plasma-discover` | Discover suitable PhysicsNeMo models/examples for plasma data shape and task. |
-| `physicsnemo-flash-dataset` | Convert FLASH runs into ML-ready datasets with explicit metadata. |
-| `physicsnemo-plasma-train` | Train physics-informed or data-driven surrogate models. |
-| `physicsnemo-plasma-infer` | Run surrogate inference and quantify domain-of-validity/uncertainty signals. |
-| `flash-physicsnemo-pipeline` | Orchestrate FLASH → HDF5 → yt → PhysicsNeMo → physical validation. |
-
-## Core pipeline
-
-```text
 Scientific question
-      ↓
-plasma-regime + plasma-dimensionless
-      ↓
-FLASH setup / run / sweep
-      ↓
-FLASH HDF5 plotfiles + checkpoints
-      ↓
-yt analysis / uniform-grid extraction
-      ↓
-PhysicsNeMo dataset
-      ↓
-2D/3D surrogate
-      ↓
-physical + numerical validation against held-out FLASH runs
-```
+→ physics / scale / closure assessment
+→ FLASH fluid MHD/Extended-MHD
+→ WarpX Hybrid-PIC
+→ WarpX / PIConGPU full kinetic PIC
+→ EDIPIC-2D for low-temperature 2D cases when appropriate
 
-The surrogate never replaces the high-fidelity solver by assumption. It is accepted only inside a documented validation domain.
+Parallel branches add WarpX MCC/DSMC, Monte Carlo parameter and uncertainty propagation, and Geant4 particle-through-matter transport.
 
-## Obtain FLASH
+All solver output then flows through HDF5/yt, openPMD or explicit adapters into canonical diagnostics, validation, multi-fidelity datasets, PhysicsNeMo surrogate training, uncertainty quantification and active learning. ScientificBrain can then choose the next parameter point, fidelity and solver.
 
-FLASH is distributed by the Flash Center for Computational Science and is **not redistributed by this repository**.
+See skills/README.md for all 39 skills.
 
-1. Go to the official FLASH Code Request page:
-   https://flash.rochester.edu/site/flashcode/coderequest.html
-2. Submit the requested registration/research information and accept the FLASH license agreement.
-3. After approval, use the official download page with the credentials provided by the Flash Center:
-   https://flash.rochester.edu/site/flashcode/download/
-4. Extract the official source archive locally.
-5. Point this toolkit to the installation:
+## Core design
 
-```bash
-export FLASH_ROOT=/path/to/FLASH4.8
-python scripts/flash_inventory.py --flash-root "$FLASH_ROOT"
-```
+### Model routing before solver routing
 
-The Flash Center license controls access, use, redistribution, and publication acknowledgment requirements. Users must follow the current official license. For publications based on FLASH, consult the Code Request/license page for the exact acknowledgment requested by the Flash Center.
+ScientificBrain evaluates target observable, closure assumptions, Debye/skin/gyro scales, collisionality, distribution-function requirements, geometry and computational budget before selecting a solver.
 
-See `references/GETTING_FLASH.md` for the complete workflow.
+Candidate hierarchy:
 
-## NVIDIA API integration
+- FLASH — ideal/resistive/Hall/Extended-MHD fluid plasma.
+- WarpX Hybrid-PIC — kinetic ions with fluid electrons where justified.
+- WarpX full PIC — general full kinetic PIC and MCC/DSMC workflows.
+- PIConGPU — GPU/HPC-scale kinetic PIC campaigns.
+- EDIPIC-2D — low-temperature 2D PIC applications.
+- Geant4 — Monte Carlo passage of particles through matter/radiation transport.
+- PhysicsNeMo — surrogate models, SciML, distributed training and active learning.
 
-The NVIDIA API credential and runtime client belong to the **ScientificBrain core project**, not this skill repository.
+### Canonical data layer
 
-```text
-scientificbrain-physics-skills
-          │ capability request
-          ▼
-     ScientificBrain
-          │
-          ├── NVIDIA hosted API / NIM
-          ├── locally hosted NVIDIA NIM
-          └── local PhysicsNeMo runtime
-```
+WarpX and PIConGPU can exchange particle/mesh data using openPMD. FLASH remains in native HDF5 and is interpreted through yt. EDIPIC-2D and Geant4 use explicit adapters. Native output is preserved; ML tensors never become the only copy.
 
-Skills describe the scientific operation and required capability. ScientificBrain will own authentication, secrets, endpoint selection, retries, telemetry, provider routing, and response normalization.
+### Monte Carlo and uncertainty
 
-See `references/SCIENTIFICBRAIN_NVIDIA_API_CONTRACT.md`.
+The toolkit distinguishes MCC, DSMC, Monte Carlo parameter sampling, Monte Carlo uncertainty propagation, Geant4 transport Monte Carlo, stochastic/PIC noise, numerical error, surrogate error and model-form/fidelity discrepancy.
 
-## Quick start
+### Multi-fidelity and active learning
 
-```bash
-export FLASH_ROOT=/path/to/FLASH4.8
-python scripts/flash_inventory.py --flash-root "$FLASH_ROOT"
-python scripts/plasma_regime.py --ne 1e24 --B 2 --Te-ev 100 --Ti-ev 100 --A 1 --Z 1 --L 1e-3 --U 1e5
-python scripts/validate_repo.py
-```
+ScientificBrain can choose both the next parameter point and the next fidelity level. A campaign may use many FLASH runs, fewer Hybrid-PIC runs, a smaller number of full-PIC runs, and experimental/transport data where appropriate. PhysicsNeMo active learning can propose new expensive labels subject to physical validity and cost.
+
+## Helper scripts
+
+Existing and new helpers include:
+- scripts/plasma_regime.py
+- scripts/plasma_model_router.py
+- scripts/canonical_run_manifest.py
+- scripts/monte_carlo_sampling.py
+- scripts/uq_summary.py
+- scripts/flash_inventory.py
+- scripts/flash_to_npz.py
+- scripts/validate_surrogate.py
+
+## External software
+
+See references/GETTING_SOLVERS.md, references/GETTING_FLASH.md, references/SOLVER_CAPABILITY_MATRIX.md, references/CANONICAL_PLASMA_DATA.md, references/MONTE_CARLO_UQ.md, references/MULTIFIDELITY_ACTIVE_LEARNING.md and references/HPC_EXECUTION.md.
+
+## ScientificBrain / NVIDIA boundary
+
+ScientificBrain owns credentials, allowed endpoints, remote/HPC worker routing, job state, telemetry and provenance. Skills express scientific intent and validation requirements. The browser never receives solver/provider secrets.
 
 ## Design rules
 
-1. **Discover, do not guess.** FLASH and PhysicsNeMo versions change.
-2. **Physics before compute.** Estimate scales before choosing the model hierarchy.
-3. **Separate solver truth from surrogate prediction.**
-4. **2D and 3D are first-class.**
-5. **No silent extrapolation.**
-6. **No FLASH redistribution.**
-7. **No provider secrets in skills.** NVIDIA/API credentials belong to ScientificBrain.
+1. Physics before compute.
+2. Discover live solver/version capabilities instead of guessing.
+3. Model hierarchy before fidelity escalation.
+4. Benchmark before scale-up.
+5. Separate native solver output from derived ML datasets.
+6. Keep stochastic seeds and sample manifests.
+7. Do not confuse space-filling sampling with probabilistic uncertainty.
+8. Preserve solver/fidelity identity in every combined dataset.
+9. No silent surrogate extrapolation.
+10. No credentials or arbitrary execution URLs in skills.
 
 ## Acknowledgements
 
-This project gratefully acknowledges:
+This project acknowledges the Flash Center, WarpX/BLAST collaboration, PIConGPU community, Princeton/PPPL EDIPIC developers, Geant4 Collaboration, openPMD community, NVIDIA PhysicsNeMo/Agent Skills teams, yt Project, OpenAI, and the broader scientific-computing community. See ACKNOWLEDGEMENTS.md.
 
-- the **Flash Center for Computational Science** for developing and maintaining FLASH;
-- **NVIDIA** and the PhysicsNeMo/Agent Skills teams for the public scientific-ML frameworks and skill architecture that informed this project;
-- the **yt Project** and broader scientific Python ecosystem for analysis and data tooling;
-- **OpenAI**, whose models were used as agent-assisted tools during the design, implementation, review, and documentation of this toolkit;
-- **Innova Space Edu SpA**, collaborating organization in the development of ScientificBrain Physics Skills during 2026.
-
-These acknowledgements do not imply endorsement, sponsorship, or affiliation unless separately stated by the respective organization.
-
-## External foundations
-
-- NVIDIA Agent Skills: https://github.com/NVIDIA/skills
-- NVIDIA PhysicsNeMo: https://github.com/NVIDIA/physicsnemo
-- PhysicsNeMo documentation: https://docs.nvidia.com/physicsnemo/
-- FLASH Center: https://flash.rochester.edu/site/flashcode/
-- yt: https://yt-project.org/
+These acknowledgements do not imply endorsement or sponsorship.
 
 ## Status
 
-`v0.1.0` is the plasma/FLASH foundation. Planned later extensions include PIC/hybrid routing, additional diagnostics, distributed simulation/training, active learning, and direct ScientificBrain orchestration.
+v0.2.0 implements the previous roadmap items: PIC/hybrid routing, additional diagnostics, distributed simulation/training, active learning and direct ScientificBrain orchestration. It additionally introduces Monte Carlo/MCC/DSMC, Geant4 transport, uncertainty quantification, canonical openPMD data handling and multi-fidelity modeling.
+
+Next work is execution infrastructure: concrete worker/HPC adapters, solver-specific benchmark bundles, richer synthetic diagnostics and automated cross-solver regression suites.

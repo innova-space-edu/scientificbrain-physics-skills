@@ -1,13 +1,77 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "cases": [
-    {"prompt": "Should Hall physics matter for this magnetized shock? I know ne, B, Te, Ti, L and U.", "expected_skill": "plasma-regime"},
-    {"prompt": "Inspect my FLASH 4.8 source and tell me whether Nernst and Seebeck switches exist.", "expected_skill": "flash-discover"},
-    {"prompt": "Configure a reproducible Hall MHD FLASH run using the unsplit staggered mesh solver.", "expected_skill": "flash-extmhd"},
-    {"prompt": "Convert these FLASH plotfiles to a regular 3D tensor dataset for a neural operator.", "expected_skill": "physicsnemo-flash-dataset"},
-    {"prompt": "Train a 2D plasma surrogate and verify it against held-out FLASH runs.", "expected_skill": "physicsnemo-plasma-train"},
-    {"prompt": "Run the complete FLASH to PhysicsNeMo workflow for a 3D plasma campaign.", "expected_skill": "flash-physicsnemo-pipeline"},
-    {"prompt": "Write a poem about a tokamak.", "expected_skill": null},
-    {"prompt": "Fine-tune a generic language model on school essays.", "expected_skill": null}
+    {
+      "prompt": "Should Hall physics matter for this magnetized shock? I know ne, B, Te, Ti, L and U.",
+      "expected_skill": "plasma-regime"
+    },
+    {
+      "prompt": "Choose between FLASH, hybrid PIC and full PIC for this shock using the physical scales.",
+      "expected_skill": "plasma-model-router"
+    },
+    {
+      "prompt": "Do I need electron kinetics for this sheath and non-Maxwellian electron tail?",
+      "expected_skill": "kinetic-validity"
+    },
+    {
+      "prompt": "Configure WarpX with kinetic ions and fluid electrons.",
+      "expected_skill": "warpx-hybrid"
+    },
+    {
+      "prompt": "Set up electron-neutral Monte Carlo collisions and ion-neutral DSMC in WarpX.",
+      "expected_skill": "warpx-mcc-dsmc"
+    },
+    {
+      "prompt": "I need a very large multi-GPU 3D full PIC campaign.",
+      "expected_skill": "picongpu-run"
+    },
+    {
+      "prompt": "Model a low-temperature 2D discharge with EDIPIC.",
+      "expected_skill": "edipic2d-run"
+    },
+    {
+      "prompt": "Simulate energetic particles passing through spacecraft shielding.",
+      "expected_skill": "geant4-particle-transport"
+    },
+    {
+      "prompt": "Propagate uncertainty in B, density and temperature through 1000 solver evaluations.",
+      "expected_skill": "montecarlo-uncertainty"
+    },
+    {
+      "prompt": "Create a random parameter design for the next solver campaign.",
+      "expected_skill": "montecarlo-parameter-sampling"
+    },
+    {
+      "prompt": "Read particle and mesh output from PIConGPU using the common data standard.",
+      "expected_skill": "openpmd-analysis"
+    },
+    {
+      "prompt": "Validate a PIC result for charge conservation, energy and particle-number convergence.",
+      "expected_skill": "pic-validation"
+    },
+    {
+      "prompt": "Combine 10000 FLASH, 500 Hybrid-PIC and 50 full-PIC runs without losing fidelity identity.",
+      "expected_skill": "multifidelity-plasma"
+    },
+    {
+      "prompt": "Scale PhysicsNeMo training over multiple GPUs for 3D field data.",
+      "expected_skill": "distributed-training"
+    },
+    {
+      "prompt": "Choose the next expensive simulation using surrogate uncertainty.",
+      "expected_skill": "active-learning-plasma"
+    },
+    {
+      "prompt": "Orchestrate the whole physics project from model selection through HPC simulation and active learning.",
+      "expected_skill": "scientificbrain-orchestration"
+    },
+    {
+      "prompt": "Write a poem about a tokamak.",
+      "expected_skill": null
+    },
+    {
+      "prompt": "Fine-tune a language model on school essays.",
+      "expected_skill": null
+    }
   ]
 }
