@@ -4,14 +4,22 @@ ScientificBrain Physics Skills was developed in collaboration with **Innova Spac
 
 Agent-assisted design, implementation, review, and documentation used **OpenAI models**.
 
-We thank the **Flash Center for Computational Science** for developing and maintaining FLASH and for making this research software available through its licensed distribution process.
+We thank the **Flash Center for Computational Science** for developing and maintaining FLASH.
 
-We thank **NVIDIA** for PhysicsNeMo and the public Agent Skills ecosystem that informed the design of this repository's scientific-skill architecture.
+We acknowledge the **WarpX / BLAST collaboration** for WarpX and its open documentation for kinetic and hybrid plasma simulation.
 
-We thank the **yt Project** and the scientific Python community for the tools that make FLASH output analysis and scientific data workflows practical.
+We acknowledge the **PIConGPU community** for GPU/HPC particle-in-cell simulation and openPMD integration.
 
-The project also benefits from the wider open scientific-computing community whose software, documentation, benchmarks, and published methods provide the foundation for reproducible computational physics.
+We acknowledge the developers of **EDIPIC and EDIPIC-2D**, including contributors from Princeton Plasma Physics Laboratory and the University of Alberta, for low-temperature plasma PIC capabilities.
 
-These acknowledgements do not imply endorsement, sponsorship, partnership, or affiliation by OpenAI, NVIDIA, the Flash Center, yt, or their respective organizations.
+We thank the **Geant4 Collaboration** for the particle-transport Monte Carlo toolkit.
 
-Researchers using FLASH must independently satisfy the Flash Center's license and publication acknowledgment requirements.
+We thank the **openPMD community** for a portable metadata/data standard for mesh and particle simulation data.
+
+We thank **NVIDIA** for PhysicsNeMo and the public Agent Skills ecosystem that informed the scientific-skill architecture.
+
+We thank the **yt Project** and the scientific Python ecosystem for FLASH/scientific-data analysis tooling.
+
+These acknowledgements do not imply endorsement, sponsorship, partnership or affiliation by OpenAI, NVIDIA, the Flash Center, WarpX/BLAST, PIConGPU, EDIPIC developers, Geant4, openPMD, yt, or their organizations.
+
+Users must independently satisfy the licenses and citation/acknowledgment requirements of every solver, framework, model and dataset they use.

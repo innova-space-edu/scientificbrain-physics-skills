@@ -1,10 +1,10 @@
 [project]
 name = "scientificbrain-physics-skills"
-version = "0.1.0"
-description = "Agent skills for plasma physics, FLASH, yt, and NVIDIA PhysicsNeMo"
+version = "0.2.0"
+description = "Agent skills for plasma physics, FLASH, PIC/hybrid, Monte Carlo, openPMD and NVIDIA PhysicsNeMo"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
-authors = [{name = "Innova Space Education"}]
+authors = [{name = "Innova Space Edu SpA"}]
 
 [project.optional-dependencies]
 analysis = ["numpy>=1.24", "h5py>=3.8", "yt>=4.2"]
@@ -12,3 +12,5 @@ analysis = ["numpy>=1.24", "h5py>=3.8", "yt>=4.2"]
 [tool.scientificbrain]
 skill_format = "nvidia-agent-skills-compatible"
 flash_source_bundled = false
+external_solver_binaries_bundled = false
+canonical_data = "openPMD/native+adapters"
