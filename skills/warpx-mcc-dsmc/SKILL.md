@@ -4,7 +4,7 @@ description: Configure, validate, and distinguish WarpX Monte Carlo Collisions (
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -27,3 +27,16 @@ WarpX documents MCC for electron/ion collisions with a neutral background and DS
 ## Output
 
 Collision model, species pairs, cross-section provenance, timestep relation, validation benchmark and diagnostics.
+
+## Source-grounded anchors
+
+Validated against WarpX development:
+- `Docs/source/theory/multiphysics/collisions.rst`
+- `Docs/source/usage/parameters.rst`
+- `Examples/Physics_applications/capacitive_discharge/`
+- `Examples/Tests/collision/`
+- `Examples/Tests/ionization_dsmc/`
+
+The inspected input system distinguishes `background_mcc` and `dsmc`. For these modes it documents scattering-process lists, two-column energy[eV]/cross-section[m^2] files, process energy costs and scattering-angle models. Preserve cross-section file hashes and reject non-monotonic energy tables before launching.
+
+See `../../references/WARPX_SOURCE_MAP.md`.

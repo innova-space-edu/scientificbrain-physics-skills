@@ -4,7 +4,7 @@ description: Configure and validate WarpX Hybrid-PIC where ions are kinetic and 
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -27,3 +27,15 @@ Use only after `kinetic-validity` supports kinetic ions with a fluid-electron tr
 ## Output
 
 Hybrid closure, resolved ion scales, input configuration, diagnostics, overlap-validation plan and domain of validity.
+
+## Source-grounded anchors
+
+Validated against the inspected WarpX development tree. Before generating a deck, verify:
+- `Docs/source/theory/models_algorithms/kinetic_fluid_hybrid_model.rst`
+- `Docs/source/usage/parameters.rst`
+- `Python/pywarpx/HybridPICModel.py`
+- `Source/FieldSolver/FiniteDifferenceSolver/HybridPICModel/`
+
+The inspected source documents `algo.maxwell_solver = hybrid` plus `hybrid_pic_model.elec_temp`, `n0_ref`, `gamma`, resistivity/hyper-resistivity, `n_floor`, and B-field `substeps`. It also contains optional electron-energy evolution, Joule heating and electron-ion relaxation. Do not emit these controls unless the installed checkout still contains them.
+
+See `../../references/WARPX_SOURCE_MAP.md`.

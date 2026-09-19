@@ -4,7 +4,7 @@ description: Use openPMD as the canonical exchange layer for particle/mesh simul
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -26,3 +26,15 @@ metadata:
 ## Output
 
 Series inventory, field/species map, units, iteration/time map, conversion manifest and quality warnings.
+
+## Source-grounded anchors
+
+Validated against openPMD-api development plus the WarpX/PIConGPU integrations:
+- `docs/source/usage/streaming.rst`
+- `include/openPMD/Series.hpp`
+- `include/openPMD/Iteration.hpp`
+- `src/binding/python/openpmd_api/`.
+
+The inspected streaming API uses linear access and `Series.snapshots()`; ADIOS2 is the streaming backend highlighted in the source. PIConGPU can expose BP5/BP4/HDF5/SST via openPMD, while WarpX documents openPMD-api/openPMD-viewer analysis.
+
+See `../../references/OPENPMD_SOURCE_MAP.md`.

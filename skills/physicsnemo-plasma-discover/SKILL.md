@@ -4,7 +4,7 @@ description: Discover live NVIDIA PhysicsNeMo model families, datapipes, example
 license: Apache-2.0
 metadata:
   author: Innova Space Education / ScientificBrain
-  version: 0.1.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -32,3 +32,16 @@ For regular grids inspect current neural-operator/FNO and physics-informed examp
 ## Output
 
 Problem shape, candidate model menu, datapipe menu, reference examples, distributed strategy options, and suggested reading order.
+
+## Source-grounded anchors
+
+Validated against PhysicsNeMo 2.2.2 and main snapshots. Relevant inspected examples:
+- `examples/cfd/mhd_pino/`
+- `examples/cfd/darcy_fno/`
+- `examples/cfd/darcy_transolver/`
+- `examples/active_learning/`
+- `examples/cfd/external_aerodynamics/active_learning_aero/`.
+
+The MHD PINO example uses FNO/TFNO, explicit equation-residual losses and `physicsnemo.sym` PDE tooling. Use it as a pattern, not as an equation set for compressible/Hall/kinetic plasma.
+
+See `../../references/PHYSICSNEMO_SOURCE_MAP.md`.
