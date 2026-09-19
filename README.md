@@ -14,7 +14,7 @@ This toolkit is the physics capability layer used by the main **ScientificBrain*
 - Public ScientificBrain application: https://scientific-brain.vercel.app
 - Scientific tools workspace: https://scientific-brain.vercel.app/scientific-tools
 
-ScientificBrain provides the user-facing orchestration layer, authentication, NVIDIA/provider routing, Monte Carlo utilities, safe job manifests, and remote/HPC worker dispatch. This repository provides the scientific routing, solver-specific skills, diagnostics, validation rules, source-grounded references, and multi-fidelity logic.
+ScientificBrain provides the user-facing orchestration layer, authentication, NVIDIA/provider routing, Monte Carlo utilities, safe job manifests, and remote/HPC/Google Cloud Batch dispatch. FLASH can use the same Google Cloud backend through a private licensed image. This repository provides the scientific routing, solver-specific skills, diagnostics, validation rules, source-grounded references, and multi-fidelity logic.
 
 See `references/SCIENTIFICBRAIN_INTEGRATION.md` for the current integration contract and `references/GOOGLE_CLOUD_EXECUTION.md` for the Google Cloud Batch execution path.
 
