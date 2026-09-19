@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+runs/
+outputs/
+*.h5
+*.hdf5
+*.npz
+*.pt
+*.pth
+*.ckpt
+FLASH4.8/
