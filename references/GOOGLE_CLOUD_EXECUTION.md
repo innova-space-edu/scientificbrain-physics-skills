@@ -62,9 +62,10 @@ Separate images should be built for:
 - PIConGPU;
 - EDIPIC-2D;
 - Geant4;
-- PhysicsNeMo.
+- PhysicsNeMo;
+- FLASH 4.8 as a **private licensed image**.
 
-FLASH requires a private/licensed build process and must not be published with FLASH source bundled.
+FLASH is fully compatible with the ScientificBrain → Google Cloud Batch execution model. The difference is distribution: the image must be built privately from an authorized FLASH checkout, stored in a private Artifact Registry repository, and never published with FLASH source bundled.
 
 ## Storage
 
