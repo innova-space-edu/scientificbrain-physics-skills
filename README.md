@@ -6,7 +6,19 @@ Agent skills for computational physics, centered on plasma physics and a multi-f
 
 The repository follows the public NVIDIA Agent Skills pattern: each skill contains a SKILL.md instruction/routing file plus a skill-card.md. External solvers are referenced, not redistributed.
 
-## v0.2.0 — 39 skills
+## Used by ScientificBrain
+
+This toolkit is the physics capability layer used by the main **ScientificBrain** project.
+
+- ScientificBrain repository: https://github.com/innova-space-edu/ScientificBrain
+- Public ScientificBrain application: https://scientific-brain.vercel.app
+- Scientific tools workspace: https://scientific-brain.vercel.app/scientific-tools
+
+ScientificBrain provides the user-facing orchestration layer, authentication, NVIDIA/provider routing, Monte Carlo utilities, safe job manifests, and remote/HPC worker dispatch. This repository provides the scientific routing, solver-specific skills, diagnostics, validation rules, source-grounded references, and multi-fidelity logic.
+
+See `references/SCIENTIFICBRAIN_INTEGRATION.md` for the current integration contract.
+
+## v0.2.1 — 39 skills
 
 The toolkit now routes across:
 
@@ -92,6 +104,6 @@ These acknowledgements do not imply endorsement or sponsorship.
 
 ## Status
 
-v0.2.0 implements the previous roadmap items: PIC/hybrid routing, additional diagnostics, distributed simulation/training, active learning and direct ScientificBrain orchestration. It additionally introduces Monte Carlo/MCC/DSMC, Geant4 transport, uncertainty quantification, canonical openPMD data handling and multi-fidelity modeling.
+v0.2.1 implements the previous roadmap items: PIC/hybrid routing, additional diagnostics, distributed simulation/training, active learning and direct ScientificBrain orchestration. It additionally introduces Monte Carlo/MCC/DSMC, Geant4 transport, uncertainty quantification, canonical openPMD data handling and multi-fidelity modeling.
 
 Next work is execution infrastructure: concrete worker/HPC adapters, solver-specific benchmark bundles, richer synthetic diagnostics and automated cross-solver regression suites.
