@@ -1,6 +1,6 @@
 # Obtaining FLASH for ScientificBrain Physics Skills
 
-FLASH source code is **not bundledled or mirrored** in this repository. Obtain it directly from the Flash Center for Computational Science.
+FLASH source code is **not bundled or mirrored** in this repository. Obtain it directly from the Flash Center for Computational Science.
 
 ## Official process
 
