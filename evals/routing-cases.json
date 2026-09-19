@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "cases": [
+    {"prompt": "Should Hall physics matter for this magnetized shock? I know ne, B, Te, Ti, L and U.", "expected_skill": "plasma-regime"},
+    {"prompt": "Inspect my FLASH 4.8 source and tell me whether Nernst and Seebeck switches exist.", "expected_skill": "flash-discover"},
+    {"prompt": "Configure a reproducible Hall MHD FLASH run using the unsplit staggered mesh solver.", "expected_skill": "flash-extmhd"},
+    {"prompt": "Convert these FLASH plotfiles to a regular 3D tensor dataset for a neural operator.", "expected_skill": "physicsnemo-flash-dataset"},
+    {"prompt": "Train a 2D plasma surrogate and verify it against held-out FLASH runs.", "expected_skill": "physicsnemo-plasma-train"},
+    {"prompt": "Run the complete FLASH to PhysicsNeMo workflow for a 3D plasma campaign.", "expected_skill": "flash-physicsnemo-pipeline"},
+    {"prompt": "Write a poem about a tokamak.", "expected_skill": null},
+    {"prompt": "Fine-tune a generic language model on school essays.", "expected_skill": null}
+  ]
+}
