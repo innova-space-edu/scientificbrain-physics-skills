@@ -70,6 +70,18 @@ NVIDIA/NIM capability invocation:
 POST /api/science?op=nvidia_invoke
 ```
 
+Google Cloud Batch:
+
+```text
+GET  /api/science?op=gcp_batch_status
+GET  /api/science?op=gcp_batch_get&job_id=...
+POST /api/science?op=gcp_batch_preview
+POST /api/science?op=gcp_batch_submit
+POST /api/science?op=gcp_batch_delete
+```
+
+Google Cloud is an execution backend. The physics skills still determine the scientific model, solver, diagnostics and acceptance criteria.
+
 ## Security boundary
 
 The browser never chooses an arbitrary worker endpoint, shell command or provider credential.
@@ -107,4 +119,4 @@ validation + canonical diagnostics
 ScientificBrain research state
 ```
 
-The NVIDIA API is optional for the local router, Monte Carlo sampling and job preparation. Once `NVIDIA_API_KEY` is configured, ScientificBrain can additionally expose approved NVIDIA/NIM capabilities from the same Scientific Tools workspace.
+The NVIDIA API is optional for the local router, Monte Carlo sampling, job preparation and Google Cloud Batch execution. Once `NVIDIA_API_KEY` is configured, ScientificBrain can additionally expose approved NVIDIA/NIM capabilities from the same Scientific Tools workspace.
