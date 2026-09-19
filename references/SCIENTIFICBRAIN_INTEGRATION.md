@@ -73,6 +73,7 @@ POST /api/science?op=nvidia_invoke
 Google Cloud Batch:
 
 ```text
+GET  /api/science?op=gcp_setup_plan
 GET  /api/science?op=gcp_batch_status
 GET  /api/science?op=gcp_batch_get&job_id=...
 POST /api/science?op=gcp_batch_preview
@@ -80,7 +81,7 @@ POST /api/science?op=gcp_batch_submit
 POST /api/science?op=gcp_batch_delete
 ```
 
-Google Cloud is an execution backend. The physics skills still determine the scientific model, solver, diagnostics and acceptance criteria.
+Google Cloud is an execution backend. The physics skills still determine the scientific model, solver, diagnostics and acceptance criteria. FLASH can run through this same backend using a private, licensed Artifact Registry image.
 
 ## Security boundary
 
