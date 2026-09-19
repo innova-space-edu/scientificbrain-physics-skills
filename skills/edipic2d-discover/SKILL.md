@@ -4,7 +4,7 @@ description: Inspect EDIPIC-2D for low-temperature 2D particle-in-cell applicati
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -26,3 +26,16 @@ EDIPIC-2D is a 2D PIC code developed for low-temperature plasma applications.
 ## Output
 
 Suitability assessment, version/dependencies, relevant inputs, diagnostics and adapter requirements.
+
+## Source-grounded anchors
+
+Validated against EDIPIC-2D main:
+- `Instructions/installing_edipic2d.md`
+- `Instructions/running_edipic2d.md`
+- `Doc/EDIPIC2D_input_data_description_*.pdf`
+- `Doc/EDIPIC2D_output_data_description_*.pdf`
+- complete `input_data_*/` examples.
+
+The inspected build requires Fortran, MPI, PETSc, HYPRE and BLAS/LAPACK. The solver executable is built under `src` and run directories contain structured `init_*.dat` files plus `petsc.rc`. Prefer cloning/modifying a complete example directory.
+
+See `../../references/EDIPIC2D_SOURCE_MAP.md`.

@@ -4,7 +4,7 @@ description: Plan PhysicsNeMo/PyTorch distributed scientific-ML training and inf
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -26,3 +26,9 @@ metadata:
 ## Output
 
 Parallel strategy, launch configuration, memory estimate, scaling benchmark and reproducibility record.
+
+## Source-grounded PhysicsNeMo mapping
+
+The inspected `physicsnemo.distributed` API documents `DistributedManager.initialize()` and DDP integration, with launch examples for `torchrun`, `mpirun` and SLURM `srun`. Use those live utilities when present; profile one device first and record distributed topology.
+
+See `../../references/PHYSICSNEMO_SOURCE_MAP.md`.

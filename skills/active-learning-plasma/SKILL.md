@@ -4,7 +4,7 @@ description: Use PhysicsNeMo active-learning concepts to select new FLASH/PIC/hy
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -33,3 +33,11 @@ Do not query outside solver/model validity merely because uncertainty is high. T
 ## Output
 
 Query strategy, candidate pool, selected samples/fidelity, labeling cost, model improvement and stopping evidence.
+
+## Source-grounded PhysicsNeMo mapping
+
+The inspected PhysicsNeMo active-learning framework iterates **training → metrology → query → labeling**. Its protocols include QueryStrategy, LabelStrategy and MetrologyStrategy. The external-aerodynamics example shows how a domain-specific adapter sits below a generic AL loop.
+
+For plasma, the LabelStrategy should call a ScientificBrain worker for FLASH/WarpX/PIConGPU/EDIPIC/Geant4, while plasma validation becomes the metrology/acceptance layer. Never reuse aerodynamic drag metrology directly.
+
+See `../../references/PHYSICSNEMO_SOURCE_MAP.md`.

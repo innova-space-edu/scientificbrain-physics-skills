@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.2.1",
+  "validated_snapshots": [
+    {
+      "project": "WarpX",
+      "snapshot": "warpx-development.zip",
+      "root": "warpx-development",
+      "role": "Hybrid-PIC, full PIC, MCC/DSMC, diagnostics, openPMD"
+    },
+    {
+      "project": "PIConGPU",
+      "snapshot": "picongpu-dev.zip",
+      "root": "picongpu-dev",
+      "role": "GPU/HPC PIC, plugins, collisions, openPMD"
+    },
+    {
+      "project": "EDIPIC-2D",
+      "snapshot": "EDIPIC-2D-main.zip",
+      "root": "EDIPIC-2D-main",
+      "role": "2D low-temperature PIC"
+    },
+    {
+      "project": "Geant4",
+      "snapshot": "geant4-v11.4.2.zip",
+      "root": "geant4-v11.4.2",
+      "role": "Monte Carlo particle transport"
+    },
+    {
+      "project": "PhysicsNeMo",
+      "snapshot": "physicsnemo-2.2.2.zip",
+      "root": "physicsnemo-2.2.2",
+      "role": "PINO/FNO, active learning, distributed SciML"
+    },
+    {
+      "project": "PhysicsNeMo",
+      "snapshot": "physicsnemo-main.zip",
+      "root": "physicsnemo-main",
+      "role": "current-development cross-check"
+    },
+    {
+      "project": "openPMD-api",
+      "snapshot": "openPMD-api-dev.zip",
+      "root": "openPMD-api-dev",
+      "role": "canonical particle/mesh I/O and streaming"
+    }
+  ],
+  "note": "Snapshots were inspected to ground skill paths and parameters. They are not redistributed by this repository."
+}

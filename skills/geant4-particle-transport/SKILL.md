@@ -4,7 +4,7 @@ description: Route and prepare Geant4 Monte Carlo simulations for particle passa
 license: Apache-2.0
 metadata:
   author: Innova Space Edu SpA / ScientificBrain
-  version: 0.2.0
+  version: 0.2.1
   tags:
     - physics
     - plasma
@@ -28,3 +28,14 @@ Use Geant4 when the primary problem is stochastic transport/interactions of part
 ## Output
 
 Transport model, source/material/geometry specification, physics-list rationale, scoring plan, sample-count/statistical criteria and provenance.
+
+## Source-grounded anchors
+
+Validated against Geant4 v11.4.2:
+- `examples/basic/B1/` for application structure, materials, primary source and scoring;
+- `examples/advanced/gorad/` for spacecraft/radiation-analysis workflows;
+- `examples/extended/electromagnetic/TestEm0/` and `TestEm1/` for EM validation patterns.
+
+Do not copy B1's QBBC list or any example physics list into a new problem without a domain-specific justification. Preserve Geant4 datasets, physics list, cuts, seed policy, geometry/material and scorer definitions.
+
+See `../../references/GEANT4_SOURCE_MAP.md`.
