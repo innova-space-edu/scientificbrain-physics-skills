@@ -2,7 +2,9 @@
 
 Agent skills for computational physics, initially focused on plasma physics, FLASH 4.8, scientific data analysis, and NVIDIA PhysicsNeMo.
 
-The repository follows the public NVIDIA Agent Skills pattern: each skill has a `SKILL.md` routing/instruction file and a `skill-card.md` governance card, with shared `references/`, `scripts/`, and evaluation cases. The first release deliberately does **not** redistribute FLASH source code. A local FLASH installation is supplied separately through `FLASH_ROOT`.
+**Developed in collaboration with Innova Space Edu SpA — 2026.** Agent-assisted design, implementation, review, and documentation used OpenAI models.
+
+This repository follows the public NVIDIA Agent Skills pattern: each skill has a `SKILL.md` routing/instruction file and a `skill-card.md` governance card, with shared `references/`, `scripts/`, and evaluation cases. The repository deliberately does **not** redistribute FLASH source code. A local FLASH installation is supplied separately through `FLASH_ROOT`.
 
 ## Scope of v0.1.0
 
@@ -48,6 +50,46 @@ physical + numerical validation against held-out FLASH runs
 
 The surrogate never replaces the high-fidelity solver by assumption. It is accepted only inside a documented validation domain.
 
+## Obtain FLASH
+
+FLASH is distributed by the Flash Center for Computational Science and is **not redistributed by this repository**.
+
+1. Go to the official FLASH Code Request page:
+   https://flash.rochester.edu/site/flashcode/coderequest.html
+2. Submit the requested registration/research information and accept the FLASH license agreement.
+3. After approval, use the official download page with the credentials provided by the Flash Center:
+   https://flash.rochester.edu/site/flashcode/download/
+4. Extract the official source archive locally.
+5. Point this toolkit to the installation:
+
+```bash
+export FLASH_ROOT=/path/to/FLASH4.8
+python scripts/flash_inventory.py --flash-root "$FLASH_ROOT"
+```
+
+The Flash Center license controls access, use, redistribution, and publication acknowledgment requirements. Users must follow the current official license. For publications based on FLASH, consult the Code Request/license page for the exact acknowledgment requested by the Flash Center.
+
+See `references/GETTING_FLASH.md` for the complete workflow.
+
+## NVIDIA API integration
+
+The NVIDIA API credential and runtime client belong to the **ScientificBrain core project**, not this skill repository.
+
+```text
+scientificbrain-physics-skills
+          │ capability request
+          ▼
+     ScientificBrain
+          │
+          ├── NVIDIA hosted API / NIM
+          ├── locally hosted NVIDIA NIM
+          └── local PhysicsNeMo runtime
+```
+
+Skills describe the scientific operation and required capability. ScientificBrain will own authentication, secrets, endpoint selection, retries, telemetry, provider routing, and response normalization.
+
+See `references/SCIENTIFICBRAIN_NVIDIA_API_CONTRACT.md`.
+
 ## Quick start
 
 ```bash
@@ -65,6 +107,19 @@ python scripts/validate_repo.py
 4. **2D and 3D are first-class.**
 5. **No silent extrapolation.**
 6. **No FLASH redistribution.**
+7. **No provider secrets in skills.** NVIDIA/API credentials belong to ScientificBrain.
+
+## Acknowledgements
+
+This project gratefully acknowledges:
+
+- the **Flash Center for Computational Science** for developing and maintaining FLASH;
+- **NVIDIA** and the PhysicsNeMo/Agent Skills teams for the public scientific-ML frameworks and skill architecture that informed this project;
+- the **yt Project** and broader scientific Python ecosystem for analysis and data tooling;
+- **OpenAI**, whose models were used as agent-assisted tools during the design, implementation, review, and documentation of this toolkit;
+- **Innova Space Edu SpA**, collaborating organization in the development of ScientificBrain Physics Skills during 2026.
+
+These acknowledgements do not imply endorsement, sponsorship, or affiliation unless separately stated by the respective organization.
 
 ## External foundations
 
