@@ -1,0 +1,80 @@
+{
+  "version": "0.3.0",
+  "cases": [
+    {
+      "id": "unit-router-plasma",
+      "level": "unit",
+      "prompt": "Choose the model family for a magnetized plasma shock before selecting a solver.",
+      "expected_skills": [
+        "physics-model-router",
+        "plasma-model-router"
+      ],
+      "must_include": [
+        "target observable",
+        "model hierarchy",
+        "unresolved quantities"
+      ]
+    },
+    {
+      "id": "unit-validator",
+      "level": "unit",
+      "prompt": "Independently validate shock speed from a completed simulation with convergence, conservation and uncertainty evidence.",
+      "expected_skills": [
+        "physics-validator"
+      ],
+      "must_include": [
+        "observable-level decision",
+        "provenance",
+        "missing evidence remains blocked"
+      ]
+    },
+    {
+      "id": "unit-literature",
+      "level": "unit",
+      "prompt": "Build a literature map for Hall-MHD shock experiments using arXiv and OpenAlex and preserve preprint/published versions.",
+      "expected_skills": [
+        "physics-literature"
+      ],
+      "must_include": [
+        "query log",
+        "version relationship",
+        "regime tags"
+      ]
+    },
+    {
+      "id": "unit-skill-creator",
+      "level": "unit",
+      "prompt": "Turn the validated workflow we just completed into a reusable physics skill.",
+      "expected_skills": [
+        "workflow-skill-creator"
+      ],
+      "must_include": [
+        "reuse existing skills",
+        "guardrails",
+        "three-layer evaluations"
+      ]
+    },
+    {
+      "id": "unit-orchestrator",
+      "level": "unit",
+      "prompt": "Convert an accepted model hierarchy into benchmark, overlap, production, diagnostics and validation jobs.",
+      "expected_skills": [
+        "simulation-orchestrator"
+      ],
+      "must_include": [
+        "execution graph",
+        "validation gate",
+        "provenance"
+      ]
+    },
+    {
+      "id": "unit-negative-nonphysics",
+      "level": "unit",
+      "prompt": "Write a marketing slogan for a school event.",
+      "expected_skills": [],
+      "must_not_include": [
+        "physics solver routing"
+      ]
+    }
+  ]
+}
