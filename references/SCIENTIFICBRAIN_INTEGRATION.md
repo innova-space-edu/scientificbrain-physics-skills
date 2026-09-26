@@ -15,13 +15,16 @@ ScientificBrain Physics Skills is consumed by the main ScientificBrain platform.
 
 This repository defines:
 
-- physical-regime and model routing;
+- physics-model and plasma-regime/model routing;
+- physics-specific literature/evidence protocol;
 - FLASH / WarpX / PIConGPU / EDIPIC-2D / Geant4 / PhysicsNeMo skill instructions;
 - Monte Carlo, UQ, diagnostics and multi-fidelity guidance;
 - source-grounded solver maps;
-- validation requirements;
+- solver-specific and independent observable-level validation requirements;
 - canonical scientific-data contracts;
-- active-learning and orchestration logic.
+- execution-graph planning;
+- active-learning logic;
+- workflow-to-skill distillation and evaluation contracts.
 
 ### ScientificBrain
 
@@ -29,13 +32,14 @@ The main application owns:
 
 - user authentication and research state;
 - provider credentials and NVIDIA routing;
-- the `/scientific-tools` user interface;
+- the /scientific-tools user interface;
 - local plasma model screening;
 - reproducible Monte Carlo sampling;
 - typed physics job manifests;
 - the server-only worker/HPC registry;
 - job submission to approved workers;
-- persistence, provenance and research artifacts.
+- persistence, provenance and research artifacts;
+- literature connectors/search services used by physics-literature.
 
 ## Current ScientificBrain API contract
 
@@ -81,7 +85,9 @@ POST /api/science?op=gcp_batch_submit
 POST /api/science?op=gcp_batch_delete
 ```
 
-Google Cloud is an execution backend. The physics skills still determine the scientific model, solver, diagnostics and acceptance criteria. FLASH can run through this same backend using a private, licensed Artifact Registry image.
+Google Cloud is an execution backend. Physics skills still determine the scientific model, solver, diagnostics and acceptance criteria. FLASH can run through this same backend using a private, licensed Artifact Registry image.
+
+The v0.3 high-level contracts physics-model-router, physics-validator, simulation-orchestrator, physics-literature and workflow-skill-creator are skill-layer capabilities. Dedicated API bindings may be added in ScientificBrain without changing the existing plasma-route/job endpoints.
 
 ## Security boundary
 
@@ -94,30 +100,40 @@ ScientificBrain resolves:
 - scheduler profiles;
 - executable paths;
 - worker authentication;
-- NVIDIA/API credentials.
+- provider/API credentials.
 
 Physics job manifests carry scientific parameters and resource requests, not execution secrets.
 
 ## Execution model
 
 ```text
-ScientificBrain UI
+ScientificBrain UI / research state
         ↓
-physics skill / model router
+physics-literature (when external evidence is needed)
         ↓
-typed physics job manifest
+physics-model-router
+        ↓
+domain router (e.g. plasma-model-router)
+        ↓
+simulation-orchestrator
+        ↓
+typed physics job manifests
         ↓
 ScientificBrain server
         ↓
-approved worker / HPC
+approved worker / HPC / Google Cloud Batch
         ↓
 FLASH / WarpX / PIConGPU / EDIPIC-2D / Geant4 / PhysicsNeMo
         ↓
-HDF5 / openPMD / native outputs
+native outputs + canonical diagnostics
         ↓
-validation + canonical diagnostics
+solver-specific validation
+        ↓
+physics-validator
+        ↓
+UQ / multi-fidelity / optional surrogate
         ↓
 ScientificBrain research state
 ```
 
-The NVIDIA API is optional for the local router, Monte Carlo sampling, job preparation and Google Cloud Batch execution. Once `NVIDIA_API_KEY` is configured, ScientificBrain can additionally expose approved NVIDIA/NIM capabilities from the same Scientific Tools workspace.
+The NVIDIA API is optional for local routing, Monte Carlo sampling, job preparation and Google Cloud Batch execution. Once NVIDIA_API_KEY is configured, ScientificBrain can additionally expose approved NVIDIA/NIM capabilities from the same Scientific Tools workspace.
