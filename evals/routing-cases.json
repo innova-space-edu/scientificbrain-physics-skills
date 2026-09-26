@@ -1,6 +1,10 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "cases": [
+    {
+      "prompt": "Choose the physical model family for this problem before selecting a solver.",
+      "expected_skill": "physics-model-router"
+    },
     {
       "prompt": "Should Hall physics matter for this magnetized shock? I know ne, B, Te, Ti, L and U.",
       "expected_skill": "plasma-regime"
@@ -12,6 +16,10 @@
     {
       "prompt": "Do I need electron kinetics for this sheath and non-Maxwellian electron tail?",
       "expected_skill": "kinetic-validity"
+    },
+    {
+      "prompt": "Search arXiv and OpenAlex for this plasma topic, preserve preprint/published versions and map conflicting regimes.",
+      "expected_skill": "physics-literature"
     },
     {
       "prompt": "Configure WarpX with kinetic ions and fluid electrons.",
@@ -50,6 +58,14 @@
       "expected_skill": "pic-validation"
     },
     {
+      "prompt": "Independently decide whether this completed simulation supports the claimed shock speed.",
+      "expected_skill": "physics-validator"
+    },
+    {
+      "prompt": "Build benchmark, overlap, production, diagnostics and validation jobs from the accepted model hierarchy.",
+      "expected_skill": "simulation-orchestrator"
+    },
+    {
       "prompt": "Combine 10000 FLASH, 500 Hybrid-PIC and 50 full-PIC runs without losing fidelity identity.",
       "expected_skill": "multifidelity-plasma"
     },
@@ -60,6 +76,10 @@
     {
       "prompt": "Choose the next expensive simulation using surrogate uncertainty.",
       "expected_skill": "active-learning-plasma"
+    },
+    {
+      "prompt": "Turn the validated workflow we just completed into a reusable physics skill.",
+      "expected_skill": "workflow-skill-creator"
     },
     {
       "prompt": "Orchestrate the whole physics project from model selection through HPC simulation and active learning.",

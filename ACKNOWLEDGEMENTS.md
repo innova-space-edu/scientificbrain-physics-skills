@@ -18,8 +18,10 @@ We thank the **openPMD community** for a portable metadata/data standard for mes
 
 We thank **NVIDIA** for PhysicsNeMo and the public Agent Skills ecosystem that informed the scientific-skill architecture.
 
+We acknowledge **Google DeepMind Science Skills (2026)** for public architectural ideas around focused scientific skills, helper scripts/resources, reusable-workflow distillation and systematic skill evaluation. ScientificBrain Physics Skills v0.3 reimplements those ideas for computational physics rather than vendoring upstream skill text.
+
 We thank the **yt Project** and the scientific Python ecosystem for FLASH/scientific-data analysis tooling.
 
-These acknowledgements do not imply endorsement, sponsorship, partnership or affiliation by OpenAI, NVIDIA, the Flash Center, WarpX/BLAST, PIConGPU, EDIPIC developers, Geant4, openPMD, yt, or their organizations.
+These acknowledgements do not imply endorsement, sponsorship, partnership or affiliation by OpenAI, NVIDIA, Google DeepMind, the Flash Center, WarpX/BLAST, PIConGPU, EDIPIC developers, Geant4, openPMD, yt, or their organizations.
 
-Users must independently satisfy the licenses and citation/acknowledgment requirements of every solver, framework, model and dataset they use.
+Users must independently satisfy the licenses and citation/acknowledgment requirements of every solver, framework, model, skill source and dataset they use.

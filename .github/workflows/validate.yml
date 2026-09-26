@@ -20,9 +20,17 @@ jobs:
         run: python scripts/validate_repo.py
       - name: Compile helper scripts
         run: python -m py_compile scripts/*.py
-      - name: Validate evaluation JSON
+      - name: Validate evaluation contracts
+        run: python scripts/eval_contracts.py
+      - name: Validate compatibility routing JSON
         run: python -m json.tool evals/routing-cases.json > /dev/null
-      - name: Smoke test physics router
+      - name: Smoke test plasma router
         run: python scripts/plasma_model_router.py --ne 1e20 --B 0.2 --Te-ev 10 --Ti-ev 2 --L 1e-2 --U 5e4 > /dev/null
+      - name: Smoke test high-level physics router
+        run: echo '{"domain":"plasma","observable":"shock speed","requires_electron_kinetics":true}' | python scripts/physics_model_router.py > /dev/null
+      - name: Smoke test validation gate
+        run: echo '{"observables":[{"name":"shock_speed","required_checks":["dimensions"],"checks":{"dimensions":{"status":"pass","evidence":"SI audit"}}}]}' | python scripts/validation_gate.py > /dev/null
+      - name: Smoke test workflow skill scaffold
+        run: python scripts/workflow_skill_scaffold.py --name hall-shock-study --description "Validated Hall-MHD shock workflow" --depends-on plasma-model-router > /dev/null
       - name: Smoke test canonical manifest
         run: python scripts/canonical_run_manifest.py --solver test --model test --version 0 --geometry cartesian --dimension 2 --out /tmp/run.json

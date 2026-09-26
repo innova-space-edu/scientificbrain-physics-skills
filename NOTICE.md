@@ -4,11 +4,13 @@ ScientificBrain Physics Skills is an independent project developed in collaborat
 
 Agent-assisted design, implementation, review, and documentation used **OpenAI models**.
 
-This repository is not an NVIDIA, OpenAI, FLASH, WarpX, PIConGPU, EDIPIC, Geant4, openPMD or yt product, and no sponsorship or affiliation is implied.
+This repository is not an NVIDIA, Google DeepMind, OpenAI, FLASH, WarpX, PIConGPU, EDIPIC, Geant4, openPMD or yt product, and no sponsorship or affiliation is implied.
 
-Names and marks of external projects belong to their respective owners. This repository does not redistribute FLASH source code, solver binaries, model weights, NVIDIA containers, third-party datasets or API credentials.
+Names and marks of external projects belong to their respective owners. This repository does not redistribute FLASH source code, solver binaries, model weights, NVIDIA containers, Google DeepMind Science Skills source files, third-party datasets or API credentials.
 
-Original skill text and integration/helper scripts in this repository are licensed under Apache-2.0 unless a file states otherwise. External software retains its own license and citation terms.
+Original skill text and integration/helper scripts in this repository are licensed under Apache-2.0 unless a file states otherwise. External software and external source materials retain their own license, citation and terms-of-use requirements.
+
+v0.3 documents architectural influence from the public Google DeepMind Science Skills project in references/SCIENCE_SKILLS_INTEGRATION.md. No upstream skill text is vendored in this release.
 
 ## Project attribution
 

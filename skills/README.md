@@ -1,12 +1,16 @@
-# Skill index — v0.2.0
+# Skill index — v0.3.0
 
-ScientificBrain Physics Skills contains **39 modular skills**. Use scientificbrain-orchestration for end-to-end routing or invoke a narrower skill directly.
+ScientificBrain Physics Skills contains **44 modular skills**. Use scientificbrain-orchestration for platform-level end-to-end routing; use simulation-orchestrator for model-to-execution planning; invoke narrower skills directly when the task is specific.
 
 ## Physics reasoning
+- physics-model-router
 - plasma-regime
 - plasma-dimensionless
 - plasma-model-router
 - kinetic-validity
+
+## Literature / evidence
+- physics-literature
 
 ## FLASH / fluid plasma
 - flash-discover
@@ -41,6 +45,9 @@ ScientificBrain Physics Skills contains **39 modular skills**. Use scientificbra
 - plasma-diagnostics
 - openpmd-analysis
 
+## Validation
+- physics-validator
+
 ## PhysicsNeMo / SciML
 - physicsnemo-plasma-discover
 - physicsnemo-flash-dataset
@@ -53,6 +60,8 @@ ScientificBrain Physics Skills contains **39 modular skills**. Use scientificbra
 - distributed-simulation
 - multifidelity-plasma
 
-## Orchestration
+## Orchestration / reusable workflows
+- simulation-orchestrator
 - flash-physicsnemo-pipeline
 - scientificbrain-orchestration
+- workflow-skill-creator

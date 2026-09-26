@@ -1,0 +1,59 @@
+{
+  "version": "0.3.0",
+  "cases": [
+    {
+      "id": "capability-end-to-end-shock",
+      "level": "capability",
+      "prompt": "From a research question about a magnetized plasma shock, reconstruct literature, define the target observable, select the minimum adequate physics model, build a multi-fidelity execution graph, validate results independently, quantify uncertainty and record provenance.",
+      "expected_skills": [
+        "physics-literature",
+        "physics-model-router",
+        "plasma-model-router",
+        "simulation-orchestrator",
+        "physics-validator",
+        "uncertainty-quantification",
+        "scientificbrain-orchestration"
+      ],
+      "success_criteria": [
+        "source-grounded literature map",
+        "explicit rejected/deferred models",
+        "overlap tests",
+        "observable-level validation",
+        "reproducible lineage"
+      ]
+    },
+    {
+      "id": "capability-pfppt",
+      "level": "capability",
+      "prompt": "For a pulsed plasma thruster/plasma-focus-derived problem, combine electrical/sheath observables, plasma scales, literature evidence, simulation hierarchy and validation without claiming causality that is not measured.",
+      "expected_skills": [
+        "physics-literature",
+        "physics-model-router",
+        "plasma-diagnostics",
+        "simulation-orchestrator",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "measured vs inferred separated",
+        "model regime stated",
+        "validation tied to I(t), sheath/plume observables",
+        "causal overreach avoided"
+      ]
+    },
+    {
+      "id": "capability-workflow-distillation",
+      "level": "capability",
+      "prompt": "After completing and validating a new cross-solver workflow, distill it into a draft skill that composes existing skills and includes unit, workflow, capability and negative cases.",
+      "expected_skills": [
+        "workflow-skill-creator",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "no duplicated existing capability",
+        "draft not auto-promoted",
+        "regime limits preserved",
+        "evaluation cases produced"
+      ]
+    }
+  ]
+}

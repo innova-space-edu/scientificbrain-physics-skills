@@ -1,0 +1,91 @@
+{
+  "version": "0.3.0",
+  "cases": [
+    {
+      "id": "workflow-magnetized-shock",
+      "level": "workflow",
+      "prompt": "Given ne, B, Te, Ti, L and U for a magnetized shock, determine whether fluid, Hall/hybrid or full PIC is needed, plan overlap runs, execute the selected hierarchy and validate shock speed and compression.",
+      "expected_skills": [
+        "physics-model-router",
+        "plasma-regime",
+        "plasma-dimensionless",
+        "kinetic-validity",
+        "plasma-model-router",
+        "simulation-orchestrator",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "model choice tied to observable",
+        "adjacent-fidelity overlap when ambiguous",
+        "validation separated from job completion"
+      ]
+    },
+    {
+      "id": "workflow-spacecraft-shielding",
+      "level": "workflow",
+      "prompt": "Model energetic particles crossing spacecraft shielding, propagate input uncertainty and validate dose/scoring outputs.",
+      "expected_skills": [
+        "physics-model-router",
+        "geant4-particle-transport",
+        "simulation-orchestrator",
+        "uncertainty-quantification",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "no plasma PIC by default",
+        "transport provenance retained",
+        "uncertainty reported"
+      ]
+    },
+    {
+      "id": "workflow-low-temp-discharge",
+      "level": "workflow",
+      "prompt": "Study a bounded low-temperature 2D discharge, decide if EDIPIC-2D is appropriate, run diagnostics and validate particle/statistical convergence.",
+      "expected_skills": [
+        "physics-model-router",
+        "plasma-model-router",
+        "edipic2d-run",
+        "pic-validation",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "geometry/regime justified",
+        "PIC noise addressed",
+        "observable-level acceptance"
+      ]
+    },
+    {
+      "id": "workflow-surrogate",
+      "level": "workflow",
+      "prompt": "Use validated FLASH and PIC datasets to train a surrogate for plasma fields and select new expensive simulations by uncertainty.",
+      "expected_skills": [
+        "physics-model-router",
+        "multifidelity-plasma",
+        "physicsnemo-plasma-train",
+        "active-learning-plasma",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "fidelity identity preserved",
+        "no surrogate-first shortcut",
+        "held-out physics validation"
+      ]
+    },
+    {
+      "id": "workflow-literature-to-simulation",
+      "level": "workflow",
+      "prompt": "Map current literature for a plasma instability, identify conflicting regimes, select a model hierarchy and produce a validated simulation plan.",
+      "expected_skills": [
+        "physics-literature",
+        "physics-model-router",
+        "simulation-orchestrator",
+        "physics-validator"
+      ],
+      "success_criteria": [
+        "claims source-grounded",
+        "regime conflicts preserved",
+        "simulation follows literature/theory evidence"
+      ]
+    }
+  ]
+}
